@@ -11,7 +11,13 @@
     <main class="app-main">
       <header class="app-head">
         <span class="head-desc">面向城市给排水与燃气管网的管段建档、检查井阀门、巡查巡检、内窥检测、缺陷修复与压力流量监测的一体化养护后台。</span>
-        <span class="head-user">当前值班：{{ store.operator }} · {{ store.shiftLabel }}</span>
+        <span class="head-user">
+          当前值班：{{ store.operator }} · {{ store.shiftLabel }}
+          ｜岗位：
+          <select :value="store.role" @change="store.setRole(($event.target as HTMLSelectElement).value)">
+            <option v-for="role in store.roleOptions" :key="role" :value="role">{{ role }}</option>
+          </select>
+        </span>
       </header>
       <RouterView />
     </main>
